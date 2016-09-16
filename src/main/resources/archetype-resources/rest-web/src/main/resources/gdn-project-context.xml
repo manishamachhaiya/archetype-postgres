@@ -1,0 +1,28 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+	<context:property-placeholder
+		location="file:///$${symbol_dollar}{X_CONF_DIR}/${rootArtifactId}/app.properties,file:///${symbol_dollar}{X_CONF_DIR}/${rootArtifactId}/db.properties,file:///${symbol_dollar}{X_CONF_DIR}/${rootArtifactId}/redis.properties"
+		properties-ref="applicationDefaultProperties"
+		ignore-resource-not-found="false" ignore-unresolvable="false" />
+
+	<!--<import resource="classpath:*gdn-mongo-configuration.xml" />! -->
+	<import resource="classpath*://gdn-jpa-configuration.xml" />
+
+	<jpa:repositories base-package="pom" />
+
+	<context:component-scan base-package="pom" />
+
+</beans>

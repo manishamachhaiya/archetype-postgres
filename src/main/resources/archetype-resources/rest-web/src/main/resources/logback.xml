@@ -1,0 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<configuration scan="true" scanPeriod="1 minutes">
+  <include file="${symbol_dollar}{X_CONF_DIR}/${rootArtifactId}/logback.xml"/>
+</configuration>
